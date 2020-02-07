@@ -1,4 +1,4 @@
-const xss = require('xss')
+const xss = require('xss');
 
 const ArticlesService = {
   getAllArticles(db) {
@@ -36,13 +36,13 @@ const ArticlesService = {
         'art.author_id',
         'usr.id',
       )
-      .groupBy('art.id', 'usr.id')
+      .groupBy('art.id', 'usr.id');
   },
 
   getById(db, id) {
     return ArticlesService.getAllArticles(db)
       .where('art.id', id)
-      .first()
+      .first();
   },
 
   getCommentsForArticle(db, article_id) {
@@ -74,11 +74,11 @@ const ArticlesService = {
         'comm.user_id',
         'usr.id',
       )
-      .groupBy('comm.id', 'usr.id')
+      .groupBy('comm.id', 'usr.id');
   },
 
   serializeArticle(article) {
-    const { author } = article
+    const { author } = article;
     return {
       id: article.id,
       style: article.style,
@@ -94,11 +94,11 @@ const ArticlesService = {
         date_created: new Date(author.date_created),
         date_modified: new Date(author.date_modified) || null
       },
-    }
+    };
   },
 
   serializeArticleComment(comment) {
-    const { user } = comment
+    const { user } = comment;
     return {
       id: comment.id,
       article_id: comment.article_id,
@@ -112,8 +112,8 @@ const ArticlesService = {
         date_created: new Date(user.date_created),
         date_modified: new Date(user.date_modified) || null
       },
-    }
+    };
   },
-}
+};
 
-module.exports = ArticlesService
+module.exports = ArticlesService;
